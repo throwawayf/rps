@@ -93,9 +93,9 @@ export default function app(config, container) {
 
   var endOfGame_ = counter_.filter(count => count === rounds)
 
-  endOfGame_.combineLatest(result_, (_, result) => {
-    if(result.player1 > result.player2) return 'win'
-    if(result.player2 > result.player1) return 'lose'
+  endOfGame_.combineLatest(score_, (_, score) => {
+    if(score.player1 > score.player2) return 'win'
+    if(score.player2 > score.player1) return 'lose'
     return 'draw'
   })
   .sample(endOfGame_)
