@@ -1,0 +1,198 @@
+/*
+  Simple reset
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+/*
+  All Buttons
+*/
+
+button {
+  border: none;
+  background-color: transparent;
+  background-size: 100% 100%;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/*
+  Shapes Buttons
+*/
+
+.buttons {
+  z-index: 1;
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  width: 320px;
+  margin-left: -160px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  transition: opacity 0.1s;
+}
+
+.buttons.hidden {
+  opacity: 0;
+}
+
+.buttons button {
+  width: 80px;
+  height: 80px;
+  margin: 0 10px;
+  opacity: 0.7;
+  color: transparent;
+  transition: transform 0.15s ease-in-out, opacity 0.15s;
+}
+
+.buttons .selected {
+  transform: scale3D(1.2, 1.2, 1);
+  opacity: 1;
+}
+
+.buttons button:hover {
+  transform: scale3D(1.2, 1.2, 1)
+}
+
+/*
+  Image classes
+*/
+.rock {
+  background-image: url('img/rock.svg');
+}
+
+.paper {
+  background-image: url('img/paper.svg');
+}
+
+.scissors {
+  background-image: url('img/scissors.svg');
+}
+
+/*
+  Big Shapes
+*/
+.shape-box {
+  top: 0;
+  bottom: 0;
+  opacity: 0.9;
+  position: fixed;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.shape-box.player1 {
+  left: 0;
+  right: 50%;
+}
+
+.shape-box.player2 {
+  right: 0;
+  left: 50%;
+}
+
+.shape-box.player1.hidden {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.shape-box.player2.hidden {
+  transform: translate3d(100%, 0, 0);
+}
+
+.shape-box.loser {
+  opacity: 0.5;
+  transform: scale3d(0.7, 0.7, 1);
+}
+
+.shape-box.winner {
+  opacity: 1;
+}
+
+/*
+  Scores
+*/
+
+.score, .counter {
+  position: fixed;
+  font-size: 70px;
+  padding: 10px 20px;
+  top: 0;
+  z-index: 5;
+}
+
+.score.player1 {
+  left: 0;
+  color: green;
+}
+
+.score.player2 {
+  right: 0;
+  color: red;
+}
+
+/*
+  Counter
+*/
+
+.counter {
+  left: 50%;
+  width: 200px;
+  text-align: center;
+  margin-left: -100px;
+  color: #999;
+  font-size: 60px;
+}
+
+/*
+  Announcement
+*/
+
+.announcement {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 70px;
+  width: 400px;
+  height: 100px;
+  margin-left: -200px;
+  text-align: center;
+  margin-top: -50px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.announcement.hidden {
+  opacity: 0;
+}
+
+.announcement.win {
+  color: green;
+}
+
+.announcement.lose {
+  color: red;
+}
+
+.announcement.draw {
+  color: #888;
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="main.css" media="screen" charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+</head>
+<body>
+  <div id="container">
+
+  </div>
+  <script src="bower/es6-shim.js"></script>
+  <script src="bower/require.js"></script>
+  <script>
+    require.config({
+      'paths': {
+        'rx': 'bower/rx.all',
+        'react': 'bower/react-with-addons'
+      },
+      deps: ['js/bootstrap']
+    })
+  </script>
+</body>
+</html>
