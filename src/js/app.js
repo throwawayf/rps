@@ -1,7 +1,6 @@
 import * as Rx from 'rx'
 import * as React from 'react'
 import Buttons from './components/Buttons'
-import ThrowButton from './components/ThrowButton'
 import Shape from './components/Shape'
 import Score from './components/Score'
 import Announcement from './components/Announcement'
@@ -91,7 +90,8 @@ export default function app(config, container) {
     })
     .shareValue(0)
 
-  var endOfGame_ = counter_.filter(count => count === rounds)
+  var endOfGame_ = counter_
+    .filter(count => count === rounds)
 
   endOfGame_.combineLatest(score_, (_, score) => {
     if(score.player1 > score.player2) return 'win'
@@ -143,7 +143,7 @@ export default function app(config, container) {
   */
   state_.subscribe(state => {
     var buttonsVisible = !state.shapesVisible && state.result === ''
-
+    var shapesClass = state.result !== '' ? 'shapes fade' : 'shapes'
     React.render(
       <div>
         <div className="counter">{state.counter}/{rounds}</div>
@@ -155,18 +155,20 @@ export default function app(config, container) {
         <Buttons events_={buttonEvents_}
                  visible={buttonsVisible}
                  shapes={config.shapes} />
-        <Shape shape={state.player1Shape}
-               isWinner={state.winner === 'player1'}
-               isLoser={state.winner === 'player2'}
-               isDraw={state.winner === null}
-               visible={state.shapesVisible}
-               class="player1" />
-        <Shape shape={state.player2Shape}
-               isWinner={state.winner === 'player2'}
-               isLoser={state.winner === 'player1'}
-               isDraw={state.winner === null}
-               visible={state.shapesVisible}
-               class="player2" />
+        <div className={shapesClass}>
+          <Shape shape={state.player1Shape}
+                 isWinner={state.winner === 'player1'}
+                 isLoser={state.winner === 'player2'}
+                 isDraw={state.winner === null}
+                 visible={state.shapesVisible}
+                 class="player1" />
+          <Shape shape={state.player2Shape}
+                 isWinner={state.winner === 'player2'}
+                 isLoser={state.winner === 'player1'}
+                 isDraw={state.winner === null}
+                 visible={state.shapesVisible}
+                 class="player2" />
+        </div>
       </div>,
     container);
   })
